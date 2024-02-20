@@ -1,10 +1,11 @@
 import bookData from "../../Data/books.json" assert { type: "json" };
+import NotFoundError from "../../Errors/NotFoundError.js";
 
 const updateBookById = (id, title, author, isbn, pages, available, genre) => {
   const book = bookData.books.find((book) => book.id === id);
 
   if (!book) {
-    throw new Error("Book not found");
+    throw new NotFoundError("Book", id);
   }
 
   book.title = title ?? book.title;
