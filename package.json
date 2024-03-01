@@ -4,12 +4,16 @@
   "description": "An example application for Express",
   "main": "index.js",
   "type": "module",
+  "prisma": {
+    "seed": "node ./prisma/seed.js"
+  },
   "scripts": {
     "dev": "nodemon index.js"
   },
   "author": "Sem Kleijs",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.10.2",
     "@sentry/node": "^7.101.1",
     "@sentry/profiling-node": "^7.101.1",
     "dotenv": "^16.4.4",
@@ -21,5 +25,8 @@
   },
   "Dependencies": {
     "nodemon": "^3.0.3"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.2"
   }
 }

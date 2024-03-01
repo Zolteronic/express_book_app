@@ -1,17 +1,35 @@
-import bookData from "../../Data/books.json" assert { type: "json" };
+//before database*********************************************************************************************
 
-const getBooks = (genre, available) => {
-  let books = bookData.books;
+// import bookData from "../../Data/books.json" assert { type: "json" };
 
-  if (genre) {
-    books = books.filter((book) => book.genre === genre);
-  }
+// const getBooks = (genre, available) => {
+//   let books = bookData.books;
 
-  if (available) {
-    books = books.filter((book) => book.available === JSON.parse(available));
-  }
+//   if (genre) {
+//     books = books.filter((book) => book.genre === genre);
+//   }
 
-  return books;
+//   if (available) {
+//     books = books.filter((book) => book.available === JSON.parse(available));
+//   }
+
+//   return books;
+// };
+
+// export default getBooks;
+
+//after database*********************************************************************************************
+import { PrismaClient } from "@prisma/client";
+
+const getBooks = async (genre, available) => {
+  const prisma = new PrismaClient();
+
+  return prisma.book.findMany({
+    where: {
+      genre,
+      available,
+    },
+  });
 };
 
 export default getBooks;

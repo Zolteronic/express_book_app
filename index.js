@@ -6,6 +6,7 @@ import loginRouter from "./routes/login.js";
 import "dotenv/config";
 import * as Sentry from "@sentry/node";
 import { ProfilingIntegration } from "@sentry/profiling-node";
+import userRouter from "./routes/users.js";
 
 import errorHandler from "./Middleware/errorHandler.js";
 const app = express();
@@ -36,6 +37,7 @@ app.use(logMiddleware);
 app.use(`/books`, booksRouter);
 app.use(`/records`, recordsRouter);
 app.use(`/login`, loginRouter);
+app.use(`/users`, userRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello world");
